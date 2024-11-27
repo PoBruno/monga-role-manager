@@ -39,9 +39,9 @@ client.on('messageCreate', async (message) => {
   // Log das mensagens recebidas
   console.log(`[Mensagem] ${message.author.tag}: ${message.content}`);
 
-  // Verifica se a mensagem está no servidor correto
-  if (message.guild.id !== '406071925815902208') {
-    console.log(`[Ignorado] Mensagem recebida de um servidor não permitido.`);
+  // Verifica se a mensagem está no canal correto
+  if (message.channel.id !== process.env.CHANNEL_ID) {
+    console.log(`[Ignorado] Mensagem fora do canal permitido: ${message.channel.name}`);
     return;
   }
 
@@ -86,6 +86,7 @@ client.on('error', (error) => {
 // Evento para tratar possíveis desconexões
 client.on('shardDisconnect', (event, shardId) => {
   console.warn(`⚡ Shard ${shardId} desconectada. Razão: ${event.reason}`);
+  console.log('Tentando reconectar...');
 });
 
 // Conecta o bot usando o token do Discord
@@ -93,5 +94,5 @@ client.login(process.env.TOKEN).then(() => {
   console.log('🔗 Conectado com sucesso ao Discord!');
 }).catch(error => {
   console.error('❌ Erro ao conectar ao Discord:', error);
+  setTimeout(() => client.login(process.env.TOKEN), 5000); // Tentativa de reconexão após 5 segundos
 });
-

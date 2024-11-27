@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:bot01": "node bots/bot01.js",
+    "start:bot02": "node bots/bot02.js",
+    "start:server": "node server/expressServer.js"
   },
   "keywords": [],
   "author": "",

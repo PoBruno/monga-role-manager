@@ -2,6 +2,20 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, PermissionsBitField } = require('discord.js');
 
+const express = require('express');
+const app = express();
+const port = 3000;  // A porta correta para o Replit
+
+// Teste simples de resposta
+app.get('/', (req, res) => {
+  res.send('Bot Mongaboss está online!');
+});
+
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});
+
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,

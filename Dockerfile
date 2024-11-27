@@ -1,4 +1,3 @@
-  GNU nano 6.2                                           Dockerfile
 # Usar a imagem oficial do Node.js como base
 FROM node:18.19.1-alpine
 

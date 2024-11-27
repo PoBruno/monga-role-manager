@@ -18,10 +18,19 @@ client.on('ready', () => {
 });
 
 // Registra o evento de mensagem
-client.on('messageCreate', async (message) => {
-    adminRoleCommand(message);
+client.on('messageCreate', async message => {
+
+    // Função !admin
+    if (message.content.startsWith('!admin')) {
+        await adminRoleCommand(message);
+    } else {
+        console.log("Recebido comando não reconhecido: ", message.content);
+    }
+
+    // Função !roll
     diceRollCommand(message);
-});
+}); 
+
 
 client.on('error', (error) => {
     console.error(`🚨 Erro no bot: ${error}`);

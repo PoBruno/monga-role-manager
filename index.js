@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, PermissionsBitField } = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 const express = require('express');
 
 // Configuração do servidor Express
@@ -39,9 +39,9 @@ client.on('messageCreate', async (message) => {
   // Log das mensagens recebidas
   console.log(`[Mensagem] ${message.author.tag}: ${message.content}`);
 
-  // Verifica se a mensagem está no canal correto
-  if (message.channel.id !== process.env.CHANNEL_ID) {
-    console.log(`[Ignorado] Mensagem fora do canal permitido: ${message.channel.name}`);
+  // Verifica se a mensagem está no servidor correto
+  if (message.guild.id !== '406071925815902208') {
+    console.log(`[Ignorado] Mensagem recebida de um servidor não permitido.`);
     return;
   }
 
